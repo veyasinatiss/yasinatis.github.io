@@ -380,6 +380,23 @@ document.addEventListener("keydown", e => {
   if(e.key === "Escape")     closeLightbox();
 });
 
+/* ── LİGHTBOX SWIPE ─────────────────────────────────────── */
+let touchStartX = 0, touchStartY = 0;
+
+$("lightbox").addEventListener("touchstart", e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+$("lightbox").addEventListener("touchend", e => {
+  if(!$("lightbox").classList.contains("active")) return;
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    dx < 0 ? lbNav(1) : lbNav(-1);
+  }
+}, { passive: true });
+
 /* ── BLOG ────────────────────────────────────────────────── */
 function renderBlog(){
   $("blog-list").innerHTML = BLOG_POSTS.map((p,i) => `
