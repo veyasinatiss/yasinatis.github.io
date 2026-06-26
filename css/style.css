@@ -526,7 +526,7 @@ nav {
   align-items: center;
   justify-content: center;
 }
-.lightbox.open { display: flex; }
+.lightbox.open, .lightbox.active { display: flex; }
 .lb-img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 3px; }
 .lb-close {
   position: fixed; top: 1.2rem; right: 1.4rem;
