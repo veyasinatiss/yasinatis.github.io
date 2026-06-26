@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Yasin Atış — Mimari iç mekan görselleştirme ve 3D render. 3ds Max, Corona, V-Ray.">
+<title>Yasin Atış — 3D Artist</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav>
+  <div class="logo" onclick="goHome()">
+    <svg class="logo-mark-svg" viewBox="0 0 76 102" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0"  y1="0"   x2="38" y2="58"  stroke="#f0ede8" stroke-width="6" stroke-linecap="round"/>
+      <line x1="76" y1="0"   x2="38" y2="58"  stroke="#f0ede8" stroke-width="6" stroke-linecap="round"/>
+      <line x1="38" y1="58"  x2="38" y2="102" stroke="#f0ede8" stroke-width="6" stroke-linecap="round"/>
+      <line x1="10" y1="36"  x2="66" y2="36"  stroke="#c9a96e" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="38" cy="58" r="8" fill="#c9a96e"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-yasin">YASIN</span>
+      <span class="logo-atis">ATIŞ</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-page="home">Anasayfa</a></li>
+    <li><a onclick="showPage('projects')" data-page="projects">Projeler</a></li>
+    <li><a onclick="showPage('blog')" data-page="blog">Blog</a></li>
+    <li><a onclick="navToContact()" data-section="contact">İletişim</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="mobileNav('home')">Anasayfa</a>
+  <a onclick="mobileNav('projects')">Projeler</a>
+  <a onclick="mobileNav('blog')">Blog</a>
+  <a onclick="mobileNavContact()">İletişim</a>
+</div>
+
+<!-- ══ HOME PAGE ══ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="eyebrow">
+      <div class="eline"></div>
+      <span class="etag">3D Artist · Architectural Visualization</span>
+    </div>
+    <h1>Yasin Atış<br><em>3D Artist &amp;</em><br>Visualizer</h1>
+    <p class="hero-sub">
+      Mimari iç mekan tasarımlarını fotogerçekçi render'larla hayata geçiriyorum.
+      Konut, otel ve ticari projeler için yüksek kaliteli 3D görselleştirme sunuyorum.
+    </p>
+<div class="hero-actions">
+      <button class="btn-p" onclick="showPage('projects')">
+        <i class="ti ti-layout-grid" aria-hidden="true"></i> Projeleri Gör
+      </button>
+      <button class="btn-g" onclick="navToContact()">
+        <i class="ti ti-mail" aria-hidden="true"></i> İletişime Geç
+      </button>
+    </div>
+    <div class="hero-software">
+      <span class="sw-tag">3ds Max</span>
+      <span class="sw-tag">Corona Renderer</span>
+      <span class="sw-tag">V-Ray</span>
+      <span class="sw-tag">Photoshop</span>
+      <span class="sw-tag">AutoCAD</span>
+      <span class="sw-tag">DaVinci Resolve</span>
+      <span class="sw-tag">Unreal Engine</span>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div id="about" class="section">
+    <div class="eyebrow"><div class="eline"></div><span class="etag">Hakkımda</span></div>
+    <div class="about-grid">
+      <div>
+        <p class="sec-title">Yasin Atış</p>
+        <p style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;">
+          3D Artist · Architectural Visualizer
+        </p>
+        <div class="about-bio">
+          <p>
+            Mimari iç mekan görselleştirme alanında profesyonel olarak çalışıyorum.
+            <strong>3ds Max, Corona ve V-Ray</strong> ile fotogerçekçi sahneler üretiyorum;
+            koltuk takımından yemek odası setlerine, aydınlatmadan dokuya kadar her detayı
+            tasarlıyorum.
+          </p>
+          <p>
+            <strong>DaVinci Resolve</strong> ile animasyon ve video post-prodüksiyon,
+            <strong>Unreal Engine</strong> ile gerçek zamanlı interaktif deneyimler de
+            hizmetlerim arasında yer almaktadır.
+          </p>
+          <p>
+            Tasarım fikirlerini müşterilere en net biçimde aktarmak için görselleştirmeyi bir
+            <strong>iletişim aracına</strong> dönüştürüyorum. Freelance proje teklifleri kabul
+            edilmektedir.
+          </p>
+        </div>
+      </div>
+      <div>
+        <p class="skills-label">Kullandığım Yazılımlar</p>
+        <div id="skills-list"></div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div style="margin-top:3.5rem;">
+      <div class="eyebrow"><div class="eline"></div><span class="etag">Hizmetler</span></div>
+      <div class="services-grid">
+        <div class="srv-card">
+          <div class="srv-icon"><i class="ti ti-home-2" aria-hidden="true"></i></div>
+          <p class="srv-title">İç Mekan Görselleştirme</p>
+          <p class="srv-desc">Konut, otel, ofis ve ticari alanlar için fotogerçekçi render üretimi.</p>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon"><i class="ti ti-sofa" aria-hidden="true"></i></div>
+          <p class="srv-title">Mobilya &amp; Ürün Modelleme</p>
+          <p class="srv-desc">Koltuk takımı, yemek seti, aydınlatma ve aksesuar modellemesi.</p>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon"><i class="ti ti-movie" aria-hidden="true"></i></div>
+          <p class="srv-title">Animasyon &amp; Video</p>
+          <p class="srv-desc">Mekân turu animasyonları ve DaVinci Resolve ile post-prodüksiyon.</p>
+        </div>
+        <div class="srv-card">
+          <div class="srv-icon"><i class="ti ti-device-gamepad-2" aria-hidden="true"></i></div>
+          <p class="srv-title">Gerçek Zamanlı Görselleştirme</p>
+          <p class="srv-desc">Unreal Engine ile interaktif sanal tur ve gerçek zamanlı sahneler.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div id="contact" class="section">
+    <div class="eyebrow"><div class="eline"></div><span class="etag">İletişim</span></div>
+    <p class="sec-title">Birlikte çalışalım</p>
+    <p class="sec-desc">Proje teklifleri ve iş birlikleri için ulaşın</p>
+    <div class="contact-grid">
+      <div class="c-info">
+        <div class="c-item">
+          <i class="ti ti-mail" aria-hidden="true"></i>
+          <a href="mailto:veyasinatis@gmail.com">veyasinatis@gmail.com</a>
+        </div>
+        <div class="c-item">
+          <i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+          <a href="https://www.linkedin.com/in/yasinatis/" target="_blank" rel="noopener">linkedin.com/in/yasinatis</a>
+        </div>
+        <div class="c-item">
+          <i class="ti ti-brand-behance" aria-hidden="true"></i>
+          <a href="https://www.behance.net/yasinatis" target="_blank" rel="noopener">behance.net/yasinatis</a>
+        </div>
+        <div class="c-item">
+          <i class="ti ti-map-pin" aria-hidden="true"></i>
+          <span>Türkiye</span>
+        </div>
+      </div>
+      <form class="f-col" id="contact-form" onsubmit="submitForm(event)">
+        <div class="f-row">
+          <input type="text"  class="fi" name="name"    placeholder="Adınız"      required>
+          <input type="email" class="fi" name="email"   placeholder="E-posta"     required>
+        </div>
+        <input type="text" class="fi" name="subject" placeholder="Konu">
+        <textarea class="fi" name="message" placeholder="Mesajınız…" required></textarea>
+        <div class="form-status" id="form-status" aria-live="polite"></div>
+        <button type="submit" class="s-btn">
+          <i class="ti ti-send" aria-hidden="true"></i> Gönder
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <span class="f-copy">© 2025 Yasin Atış — 3D Artist</span>
+    <div class="f-soc">
+      <a href="https://www.behance.net/yasinatis" target="_blank" rel="noopener" aria-label="Behance">
+        <i class="ti ti-brand-behance" aria-hidden="true"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/yasinatis/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:veyasinatis@gmail.com" aria-label="E-posta">
+        <i class="ti ti-mail" aria-hidden="true"></i>
+      </a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══ PROJECTS LIST PAGE ══ -->
+<div id="page-projects" class="page">
+  <div class="section">
+    <div class="eyebrow"><div class="eline"></div><span class="etag">Portföy</span></div>
+    <p class="sec-title">Seçme Çalışmalar</p>
+    <p class="sec-desc">Bir projeye tıklayarak tüm render'ları inceleyin</p>
+    <div class="projects-list" id="projects-list"></div>
+  </div>
+</div>
+
+<!-- ══ PROJECT DETAIL PAGE ══ -->
+<div id="page-detail" class="page">
+  <div class="detail-back" onclick="showPage('projects')">
+    <i class="ti ti-arrow-left" aria-hidden="true"></i> Tüm Projeler
+  </div>
+  <div class="detail-header">
+    <p class="detail-cat"  id="detail-cat"></p>
+    <p class="detail-title" id="detail-title"></p>
+    <p class="detail-sub"  id="detail-sub"></p>
+  </div>
+  <div class="room-tabs"     id="room-tabs"></div>
+  <div class="render-gallery" id="detail-gallery"></div>
+</div>
+
+<!-- ══ BLOG LIST PAGE ══ -->
+<div id="page-blog" class="page">
+  <div class="section">
+    <div class="eyebrow"><div class="eline"></div><span class="etag">Blog</span></div>
+    <p class="sec-title">Yazılar &amp; Süreç Notları</p>
+    <p class="sec-desc">Projeler arkasındaki düşünceler, teknikler ve ipuçları</p>
+    <div class="blog-grid" id="blog-list"></div>
+  </div>
+</div>
+
+<!-- ══ BLOG DETAIL PAGE ══ -->
+<div id="page-blog-detail" class="page">
+  <div class="detail-back" onclick="showPage('blog')">
+    <i class="ti ti-arrow-left" aria-hidden="true"></i> Tüm Yazılar
+  </div>
+  <div class="blog-detail-header">
+    <div class="blog-meta">
+      <span class="blog-tag" id="bd-tag"></span>
+      <span class="blog-date" id="bd-date"></span>
+    </div>
+    <h1 id="bd-title"></h1>
+  </div>
+  <div class="blog-cover" id="bd-cover"></div>
+  <div class="blog-content" id="bd-content"></div>
+</div>
+
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lb-close" onclick="closeLightbox()" aria-label="Kapat">
+    <i class="ti ti-x" aria-hidden="true"></i>
+  </span>
+  <span class="lb-prev" onclick="lbNav(-1); event.stopPropagation()" aria-label="Önceki">
+    <i class="ti ti-chevron-left" aria-hidden="true"></i>
+  </span>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <span class="lb-next" onclick="lbNav(1); event.stopPropagation()" aria-label="Sonraki">
+    <i class="ti ti-chevron-right" aria-hidden="true"></i>
+  </span>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<!-- ══ SCROLL TO TOP ══ -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yukarı">
+  <i class="ti ti-arrow-up" aria-hidden="true"></i>
+</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>
