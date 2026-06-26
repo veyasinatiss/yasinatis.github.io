@@ -340,8 +340,8 @@ function applyWatermark(imgEl) {
 
     ctx.globalAlpha = 1.0;
     ctx.fillStyle   = "#ffffff";
-    ctx.shadowColor = "rgba(0,0,0,0.55)";
-    ctx.shadowBlur  = Math.round(size * 0.5);
+    ctx.shadowColor = "rgba(0,0,0,0.7)";
+    ctx.shadowBlur  = Math.round(size * 0.8);
 
     /* Logo (YA sembolü) — sağ alt */
     const lx = canvas.width  - pad - logoSz - Math.round(size * 4.8) - pad;
@@ -389,7 +389,15 @@ function renderGallery(images){
       <img src="${img.src}" alt="${img.caption||''}" loading="lazy">
     </div>
   `).join("");
-  $("detail-gallery").querySelectorAll("img").forEach(applyWatermark);
+  $("detail-gallery").querySelectorAll(".render-item").forEach(item => {
+    const img = item.querySelector("img");
+    applyWatermark(img);
+    const shield = document.createElement("div");
+    shield.style.cssText = "position:absolute;inset:0;z-index:2;";
+    shield.addEventListener("contextmenu", e => e.preventDefault());
+    item.style.position = "relative";
+    item.appendChild(shield);
+  });
 }
 
 /* ── LİGHTBOX ───────────────────────────────────────────── */
@@ -511,12 +519,6 @@ window.addEventListener("scroll", () => {
 });
 
 /* ── GÖRSEL KORUMA ───────────────────────────────────────── */
-document.addEventListener("contextmenu", e => {
-  if(e.target.tagName === "IMG") {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-});
 document.addEventListener("dragstart", e => {
   if(e.target.tagName === "IMG") e.preventDefault();
 });
