@@ -389,15 +389,7 @@ function renderGallery(images){
       <img src="${img.src}" alt="${img.caption||''}" loading="lazy">
     </div>
   `).join("");
-  $("detail-gallery").querySelectorAll(".render-item").forEach(item => {
-    const img = item.querySelector("img");
-    applyWatermark(img);
-    const shield = document.createElement("div");
-    shield.style.cssText = "position:absolute;inset:0;z-index:2;";
-    shield.addEventListener("contextmenu", e => e.preventDefault());
-    item.style.position = "relative";
-    item.appendChild(shield);
-  });
+  $("detail-gallery").querySelectorAll("img").forEach(applyWatermark);
 }
 
 /* ── LİGHTBOX ───────────────────────────────────────────── */
