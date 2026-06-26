@@ -338,7 +338,7 @@ function applyWatermark(imgEl) {
     const pad    = Math.round(size * 1.1);
     const logoSz = Math.round(size * 1.6);
 
-    ctx.globalAlpha = 0.38;
+    ctx.globalAlpha = 1.0;
     ctx.fillStyle   = "#ffffff";
     ctx.shadowColor = "rgba(0,0,0,0.55)";
     ctx.shadowBlur  = Math.round(size * 0.5);
@@ -512,7 +512,10 @@ window.addEventListener("scroll", () => {
 
 /* ── GÖRSEL KORUMA ───────────────────────────────────────── */
 document.addEventListener("contextmenu", e => {
-  if(e.target.tagName === "IMG") e.preventDefault();
+  if(e.target.tagName === "IMG") {
+    e.preventDefault();
+    e.stopPropagation();
+  }
 });
 document.addEventListener("dragstart", e => {
   if(e.target.tagName === "IMG") e.preventDefault();
