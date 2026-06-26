@@ -458,6 +458,34 @@ nav {
   flex-direction: column;
   gap: 8px;
 }
+.render-item {
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--bg3);
+  cursor: pointer;
+  position: relative;
+}
+.render-item img { width: 100%; height: auto; display: block; transition: transform .45s; user-select: none; -webkit-user-drag: none; }
+.render-item:hover img { transform: scale(1.02); }
+.wm-overlay {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.8));
+}
+.wm-logo { width: 18px; height: 24px; flex-shrink: 0; }
+.wm-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .08em;
+  color: #fff;
+  white-space: nowrap;
+}
 .rg-row { display: grid; gap: 8px; }
 .rg-item {
   overflow: hidden;

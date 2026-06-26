@@ -325,71 +325,23 @@ function switchTab(projId, roomIdx, btn){
 
 let lbImages = [], lbIndex = 0;
 
-function applyWatermark(imgEl) {
-  imgEl.addEventListener("load", function() {
-    const canvas = document.createElement("canvas");
-    canvas.width  = this.naturalWidth;
-    canvas.height = this.naturalHeight;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(this, 0, 0);
-
-    const scale  = Math.max(canvas.width, canvas.height) / 1800;
-    const size   = Math.round(Math.max(18, 22 * scale));
-    const pad    = Math.round(size * 1.1);
-    const logoSz = Math.round(size * 1.6);
-
-    ctx.globalAlpha = 1.0;
-    ctx.fillStyle   = "#ffffff";
-    ctx.shadowColor = "rgba(0,0,0,0.7)";
-    ctx.shadowBlur  = Math.round(size * 0.8);
-
-    /* Logo (YA sembolü) — sağ alt */
-    const lx = canvas.width  - pad - logoSz - Math.round(size * 4.8) - pad;
-    const ly = canvas.height - pad - logoSz;
-    const lw = logoSz, lh = logoSz;
-    const cx = lx + lw / 2, cy = ly + lh * 0.57;
-    const sw = lw * 0.08;
-
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineCap     = "round";
-
-    ctx.lineWidth = sw;
-    ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(cx, cy); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(lx + lw, ly); ctx.lineTo(cx, cy); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx, ly + lh); ctx.stroke();
-
-    ctx.lineWidth = sw * 1.1;
-    ctx.strokeStyle = "#c9a96e";
-    ctx.beginPath(); ctx.moveTo(lx + lw*0.13, ly + lh*0.35); ctx.lineTo(lx + lw*0.87, ly + lh*0.35); ctx.stroke();
-
-    ctx.fillStyle = "#c9a96e";
-    ctx.beginPath(); ctx.arc(cx, cy, sw * 1.1, 0, Math.PI * 2); ctx.fill();
-
-    /* "Yasin Atış" yazısı */
-    ctx.fillStyle   = "#ffffff";
-    ctx.shadowBlur  = Math.round(size * 0.4);
-    ctx.font        = `300 ${size}px Inter, sans-serif`;
-    ctx.fillText("Yasin Atış", lx + logoSz + Math.round(size * 0.5), ly + logoSz * 0.65);
-
-    ctx.font = `500 ${Math.round(size * 0.7)}px Inter, sans-serif`;
-    ctx.fillText("3D Artist", lx + logoSz + Math.round(size * 0.5), ly + logoSz * 0.65 + Math.round(size * 1.05));
-
-    ctx.globalAlpha = 1;
-    ctx.shadowBlur  = 0;
-
-    const wm = canvas.toDataURL("image/jpeg", 0.92);
-    this.src = wm;
-  }, { once: true });
-}
-
 function renderGallery(images){
   lbImages = images;
   $("detail-gallery").innerHTML = images.map((img, i) => `
     <div class="render-item" onclick="openLightbox(${i})">
       <img src="${img.src}" alt="${img.caption||''}" loading="lazy">
+      <div class="wm-overlay">
+        <svg class="wm-logo" viewBox="0 0 76 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="0" x2="38" y2="58" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+          <line x1="76" y1="0" x2="38" y2="58" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+          <line x1="38" y1="58" x2="38" y2="102" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+          <line x1="10" y1="36" x2="66" y2="36" stroke="#c9a96e" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="38" cy="58" r="8" fill="#c9a96e"/>
+        </svg>
+        <span class="wm-text">Yasin Atış</span>
+      </div>
     </div>
   `).join("");
-  $("detail-gallery").querySelectorAll("img").forEach(applyWatermark);
 }
 
 /* ── LİGHTBOX ───────────────────────────────────────────── */
@@ -403,9 +355,8 @@ function openLightbox(i){
 function updateLb(){
   const img = lbImages[lbIndex];
   const el  = $("lb-img");
-  el.alt    = img.caption || "";
-  el.src    = img.src;
-  applyWatermark(el);
+  el.alt = img.caption || "";
+  el.src = img.src;
   $("lb-counter").textContent = (lbIndex + 1) + " / " + lbImages.length;
 }
 
